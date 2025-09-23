@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Macaron Kaomoji - DNFK Studios</title>
+  <meta name="description" content=" 顔文字<3 ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;600;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style25092301.css">
+</head>
+<body>
+  <div class="bg-candy"></div>
+  <header class="site-header">
+    <h1>Macaron Kaomoji</h1>
+    <p class="subtitle">暗夜飛鳶工作室 DNFK Studios</p>
+
+    <div class="toolbar">
+      <div class="tool-left">
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="搜尋關鍵字或直接貼上顏文字…" aria-label="搜尋顏文字">
+          <button id="clearBtn" class="btn btn-primary" data-ripple>清除</button>
+        </div>
+        <div class="quick-actions">
+          <button id="shuffleBtn" class="btn" data-ripple>隨機</button>
+          <button id="densityBtn" class="btn" data-ripple data-density="cozy">版面：舒適</button>
+        </div>
+      </div>
+      <div class="tool-right">
+        <button id="themeBtn" class="btn btn-ghost" data-ripple title="深淺色切換">🌞/🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls">
+      <div class="tag-row" id="tagRow"></div>
+    </section>
+
+    <section id="stats" class="stats">載入中…</section>
+
+    <section id="grid" class="grid"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Copyright © 2025 DNFK Studios.<nav>
+      暗夜飛鳶工作室 資訊小組製作<nav>
+      聯絡資訊：tit.contect@dnfk.qzz.io
+    </p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="kaomoji-data25092301.js"></script>
+  <script src="app25092301.js"></script>
+</body>
+</html>
