@@ -1,7 +1,7 @@
 const CACHE_NAME = 'kaomoji-v5-revert-001';
 const ASSETS = [
   './',
-  'index20250929230101.html',
+  'index.html',
   'style20250929142401.css',
   'app20250929143001.js',
   'kaomoji-data20250929142901.js',
