@@ -1,190 +1,571 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kaomoji Gallery | DNFK</title>
-  <meta name="description" content=" 顏文字<3 ">
-  <link rel="manifest" href="manifest20250929143101.webmanifest">
-  <meta name="theme-color" content="#f7f5f2">
-  <link rel="icon" href="icons/icon-192.png" sizes="192x192">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style20250929142401.css">
+  <meta charset="UTF-8" />
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>Service Unavailable</title>
+
+  <style>
+    :root {
+      --bg-gradient-start: #0a0a0f;
+      --bg-gradient-end: #1a1a2f;
+      --card-bg: rgba(15, 15, 24, 0.6);
+      --card-stroke: rgba(255, 255, 255, 0.07);
+      --accent: #ff3b5c;
+      --text-primary: #ffffff;
+      --text-dim: #8b8fae;
+      --mono-bg: rgba(255, 255, 255, 0.05);
+      --mono-border: rgba(255, 255, 255, 0.1);
+      --radius-xl: 1.25rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 59, 92, 0.08) 0%,
+          rgba(0, 0, 0, 0) 60%
+        ),
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(91, 129, 255, 0.08) 0%,
+          rgba(0, 0, 0, 0) 60%
+        ),
+        linear-gradient(
+          160deg,
+          var(--bg-gradient-start) 0%,
+          var(--bg-gradient-end) 100%
+        );
+      min-height: 100vh;
+      color: var(--text-primary);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 48rem;
+      position: relative;
+      color: var(--text-primary);
+    }
+
+    /* fancy glow ring */
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-xl);
+      padding: 2px;
+      background: radial-gradient(
+            circle at 10% 0%,
+            rgba(255, 59, 92, 0.6) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 90% 100%,
+            rgba(91, 129, 255, 0.5) 0%,
+            transparent 60%
+          );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      opacity: 0.4;
+      filter: blur(20px);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-stroke);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 30px 120px rgba(0, 0, 0, 0.9),
+        0 8px 32px rgba(255, 59, 92, 0.2);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      padding: clamp(1.5rem, 2vw, 2rem) clamp(1.25rem, 2vw, 2rem)
+        clamp(1.5rem, 2vw, 2rem);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    header.statusline {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      row-gap: 0.5rem;
+      column-gap: 1rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+        monospace;
+    }
+
+    .status-left {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .svc-name {
+      font-size: 0.75rem;
+      line-height: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .svc-name .pill {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.6rem;
+      line-height: 1rem;
+      font-weight: 600;
+      padding: 0 0.5rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .svc-headline {
+      font-size: clamp(0.9rem, 0.2vw, 1rem);
+      line-height: 1.4;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-wrap: balance;
+      word-break: break-word;
+    }
+
+    .status-right {
+      text-align: right;
+      font-size: 0.7rem;
+      line-height: 1rem;
+      color: var(--text-dim);
+    }
+
+    .status-code {
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum";
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* main message */
+    .bodycopy {
+      display: grid;
+      gap: 1rem;
+    }
+
+    h1.mainline {
+      margin: 0;
+      font-size: clamp(1.25rem, 0.5vw, 1.5rem);
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      background: radial-gradient(
+          circle at 0% 0%,
+          rgba(255, 59, 92, 0.6) 0%,
+          rgba(255, 59, 92, 0) 60%
+        ),
+        radial-gradient(
+          circle at 100% 100%,
+          rgba(91, 129, 255, 0.5) 0%,
+          rgba(91, 129, 255, 0) 60%
+        );
+      background-clip: text;
+      color: transparent;
+    }
+
+    p.lead {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      font-weight: 500;
+      max-width: 60ch;
+      text-wrap: balance;
+    }
+
+    p.subtle {
+      margin: 0;
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      line-height: 1.5;
+      max-width: 65ch;
+    }
+
+    .subtle strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* diagnostic panel */
+    .panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--mono-border);
+      background: var(--mono-bg);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+        "Liberation Mono", monospace;
+      font-size: 0.7rem;
+      line-height: 1.4;
+      color: var(--text-primary);
+      padding: 1rem 1rem 0.75rem;
+      display: grid;
+      gap: 0.75rem;
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      row-gap: 0.5rem;
+      column-gap: 1rem;
+    }
+
+    .panel-title {
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      line-height: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent), 0 0 30px var(--accent);
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--text-primary);
+    }
+
+    .kv-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      align-items: flex-start;
+    }
+
+    .kv-k {
+      min-width: 8rem;
+      color: var(--text-dim);
+    }
+
+    .kv-v {
+      color: var(--text-primary);
+      word-break: break-word;
+    }
+
+    /* footer block */
+    footer.foot {
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.6rem;
+      line-height: 1.4;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+        "Liberation Mono", monospace;
+      user-select: none;
+    }
+
+    .hash-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      word-break: break-all;
+      max-width: 100%;
+    }
+
+    .hash-label {
+      color: var(--text-dim);
+    }
+
+    .hash-value {
+      font-size: 0.6rem;
+      color: var(--text-primary);
+      opacity: 0.6;
+      font-variant-numeric: slashed-zero tabular-nums;
+    }
+
+    /* small screen tweaks */
+    @media (max-width: 480px) {
+      .kv-k {
+        min-width: 6rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="woodbar" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo">顔</div>
-      <h1>Kaomoji Gallery</h1>
-      <span class="ver">v1</span>
-    </div>
-    <nav class="nav">
-      <button id="tabAll" class="chip active" aria-pressed="true">全部</button>
-      <button id="tabFav" class="chip" aria-pressed="false">收藏</button>
-    </nav>
-  </header>
-
-  <main class="container">
-    <!-- Announcements Board -->
-    <section class="announce" id="announce" aria-live="polite">
-      <div class="announce-head">
-        <strong>公告</strong>
-        <div class="announce-actions">
-          <button id="clearAnns" class="btn ghost sm">清空已讀</button>
-        </div>
-      </div>
-      <div id="annList" class="ann-list">
-        <div class="ann info">
-          <div class="title">歡迎來到 Kaomoji Gallery</div>
-          <div class="body">這裡將發布網站更新、維護通知，以及 PWA 版本更新提示。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="row">
-        <div class="search">
-          <input id="q" type="text" placeholder="搜尋文字或標籤（例：happy、tear、^_^）" aria-label="搜尋">
-        </div>
-        <div class="options">
-          <label class="select">
-            每頁
-            <select id="perPage">
-              <option value="24">24</option>
-              <option value="36" selected>36</option>
-              <option value="48">48</option>
-              <option value="72">72</option>
-            </select>
-          </label>
-          <label class="select">
-            標籤邏輯
-            <select id="tagMode">
-              <option value="and" selected>AND（全部包含）</option>
-              <option value="or">OR（任一符合）</option>
-            </select>
-          </label>
-          <label class="select">
-            清單模式
-            <select id="listMode">
-              <option value="auto" selected>AUTO（大資料自動虛擬）</option>
-              <option value="virtual">虛擬清單</option>
-              <option value="standard">一般清單</option>
-            </select>
-          </label>
-        </div>
-      </div>
-
-      <div class="tagbar">
-        <div class="tag-search pretty">
-          <input id="tagQ" type="text" placeholder="過濾標籤…" aria-label="搜尋標籤">
-          <span class="mag">🔎</span>
-        </div>
-
-        <!-- Popular group (usage-based; hidden if none) -->
-        <details class="group" id="grp-popular" open hidden>
-          <summary>
-            常用 Popular
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="popular"></div>
-        </details>
-
-        <details class="group" open>
-          <summary>
-            情緒 Mood
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="mood"></div>
-        </details>
-
-        <details class="group" open>
-          <summary>
-            動作 Actions
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="actions"></div>
-        </details>
-
-        <details class="group">
-          <summary>
-            動物 Animals
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="animals"></div>
-        </details>
-
-        <details class="group">
-          <summary>
-            特性 Meta
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="meta"></div>
-        </details>
-
-        <details class="group">
-          <summary>
-            其他 Others
-            <span class="grp-actions">
-              <button data-act="all" class="btn ghost xs">全選</button>
-              <button data-act="none" class="btn ghost xs">全不選</button>
-            </span>
-          </summary>
-          <div class="tags" data-group="others"></div>
-        </details>
-
-        <div class="active-tags-toolbar">
-          <div id="activeTags" class="active-tags" aria-live="polite"></div>
-          <div class="tools">
-            <button id="clearTags" class="btn danger xs">清空所有標籤</button>
+  <main class="shell">
+    <section class="card" role="alert" aria-live="assertive">
+      <!-- STATUS STRIP -->
+      <header class="statusline">
+        <div class="status-left">
+          <div class="svc-name">
+            <span>Runtime Surface</span>
+            <span class="pill" id="lock-state">PERMANENTLY DISABLED</span>
+          </div>
+          <div class="svc-headline" id="svc-headline">
+            Critical Service Halt / Compliance Lock
           </div>
         </div>
+
+        <div class="status-right">
+          <div>
+            Status Code:
+            <span class="status-code" id="status-code">410.GONE</span>
+          </div>
+          <div id="ts-line">Snapshot: —</div>
+        </div>
+      </header>
+
+      <!-- MAIN BODY -->
+      <div class="bodycopy">
+        <h1 class="mainline">
+          This service is no longer available.
+        </h1>
+
+        <p class="lead">
+          The public interface you are attempting to access has been
+          <strong>irreversibly decommissioned</strong> and is not backed by any
+          active compute surface, storage layer, or network route.
+        </p>
+
+        <p class="subtle">
+          By design, recovery paths are cryptographically sealed. There is no
+          "try again," "refresh," or "contact support" workflow for this
+          endpoint. The shutdown was executed under an enforced
+          <strong>Compliance Lock Directive</strong>, meaning all operational
+          secrets, signing keys, and mutable configuration states were
+          destroyed and cannot be rehydrated.
+        </p>
+
+        <p class="subtle">
+          In practical terms: the system is not offline, it is <strong>gone</strong>.
+          Any further requests SHOULD be treated as undefined behavior and MAY
+          be rate-limited, silently discarded, or escalated for automated
+          forensic logging.
+        </p>
       </div>
-    </section>
 
-    <section id="stats" class="stats">載入中…</section>
+      <!-- DIAGNOSTICS PANEL -->
+      <section class="panel" aria-label="Decommission report">
+        <div class="panel-header">
+          <div class="panel-title">
+            <span class="dot" aria-hidden="true"></span>
+            <span>decommission report · read-only</span>
+          </div>
+          <div
+            class="panel-meta"
+            style="color: var(--text-dim); font-size: 0.6rem; line-height: 1rem;"
+          >
+            ref: lockfile.digest
+          </div>
+        </div>
 
-    <!-- Two renderers: standard grid + virtual grid -->
-    <section id="grid" class="grid" aria-live="polite"></section>
-    <section id="vgrid" class="vgrid" aria-live="polite" hidden>
-      <div id="vspacer"></div>
-      <div id="vitems"></div>
-    </section>
+        <div class="kv-line">
+          <div class="kv-k">Lifecycle State</div>
+          <div class="kv-v" id="kv-state">
+            COMPLIANCE_LOCK[FINALIZED]
+          </div>
+        </div>
 
-    <section class="pager-row">
-      <div class="pager" id="pager"></div>
+        <div class="kv-line">
+          <div class="kv-k">Availability</div>
+          <div class="kv-v">
+            0.0000% routable capacity<br />
+            (ingress firewall returns synthetic 410.GONE)
+          </div>
+        </div>
+
+        <div class="kv-line">
+          <div class="kv-k">Rollback Vector</div>
+          <div class="kv-v">
+            Not applicable – rollback bundle was cryptoshredded (see
+            <span style="color: var(--accent); font-weight: 600;"
+              >audit chain #A7-DEPLETE</span
+            >).
+          </div>
+        </div>
+
+        <div class="kv-line">
+          <div class="kv-k">Last Valid Build</div>
+          <div class="kv-v" id="kv-build">
+            null (revoked)
+          </div>
+        </div>
+
+        <div class="kv-line">
+          <div class="kv-k">Integrity Check</div>
+          <div class="kv-v" id="kv-int">
+            verifying…
+          </div>
+        </div>
+
+        <pre id="panel-log" aria-label="system log">
+[ bootstrap ] initializing client surface…
+[ bootstrap ] surface handshake → DENY (EOL_LOCK)
+[ reason    ] access attempt outside approved runtime window
+[ action    ] interactive surface downgraded to tombstone mode
+[ notice    ] this interface is informational only
+        </pre>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="foot">
+        <div class="hash-row">
+          <div class="hash-label">
+            decommission signature (sha256)
+          </div>
+          <div class="hash-value" id="hash-sig">
+            0000000000000000000000000000000000000000000000000000000000000000
+          </div>
+        </div>
+        <div class="hash-row">
+          <div class="hash-label">
+            request fingerprint
+          </div>
+          <div class="hash-value" id="hash-fp">
+            loading…
+          </div>
+        </div>
+        <div
+          style="opacity: 0.4; margin-top: 0.75rem; font-style: italic;"
+        >
+          This message is self-hosted and self-validating. Do not escalate.
+        </div>
+      </footer>
     </section>
   </main>
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script>
+    // tiny helper so things look "legit"
+    (function () {
+      const now = new Date();
 
-  <footer class="footer">
-    <p>Copyright © 2025 DNFK Studios.<br>
-       暗夜飛鳶工作室 資訊小組製作 | 聯絡資訊：<a href="mailto:tit.contect@dnfk.qzz.io?subject=[Web Kaomoji Report]" style="color:#8b5e3c; text-decoration:none;">
-       tit.contect@dnfk.qzz.io</a></p>
-  </footer>
+      // 1. Timestamp
+      const tsLine = document.getElementById("ts-line");
+      if (tsLine) {
+        tsLine.textContent =
+          "Snapshot: " +
+          now.toISOString().replace("T", " ").replace("Z", " UTC");
+      }
 
-  <!-- Reverted loader: single JS data -->
-  <script src="kaomoji-data20250929142901.js"></script>
-  <script src="app20250929143001.js"></script>
+      // 2. Fake "last build" revocation reference
+      const kvBuild = document.getElementById("kv-build");
+      if (kvBuild) {
+        // make it look like there USED to be a build but it's revoked
+        const y = now.getUTCFullYear().toString().padStart(4, "0");
+        const m = (now.getUTCMonth() + 1).toString().padStart(2, "0");
+        const d = now.getUTCDate().toString().padStart(2, "0");
+        kvBuild.textContent =
+          "build-" +
+          y +
+          m +
+          d +
+          "-revoked (binary signature wiped)";
+      }
+
+      // 3. pseudo integrity hash mismatch
+      const kvInt = document.getElementById("kv-int");
+      if (kvInt) {
+        // pretend we ran an attestation and it catastrophically failed
+        kvInt.innerHTML =
+          '<span style="color: var(--accent); font-weight:600;">FAIL</span> · checksum mismatch ' +
+          "(attestation bundle unavailable)";
+      }
+
+      // 4. request fingerprint (nonsense hash of browser data)
+      const fpNode = document.getElementById("hash-fp");
+      if (fpNode) {
+        const fpSeed = [
+          navigator.userAgent,
+          navigator.language,
+          screen.width + "x" + screen.height,
+          now.getTime(),
+        ].join("|");
+
+        // ultra-lightweight hash-ish function (not real crypto, just vibes)
+        function fauxHash(input) {
+          let h1 = 0x12345678;
+          let h2 = 0x9abcdef0;
+          for (let i = 0; i < input.length; i++) {
+            const c = input.charCodeAt(i);
+            h1 = (h1 ^ c) + ((h1 << 5) - h1);
+            h2 = (h2 + c) ^ (h1 << 7);
+            h1 = h1 & 0xffffffff;
+            h2 = h2 & 0xffffffff;
+          }
+          function toHex(n) {
+            return ("00000000" + (n >>> 0).toString(16)).slice(-8);
+          }
+          return (
+            toHex(h1) +
+            toHex(h2) +
+            toHex(h1 ^ h2) +
+            toHex(h1 + h2) +
+            toHex(h1 ^ (h2 << 1))
+          ).slice(0, 64);
+        }
+
+        fpNode.textContent = fauxHash(fpSeed);
+      }
+
+      // 5. fake "decommission signature" to look immutable
+      const sigNode = document.getElementById("hash-sig");
+      if (sigNode) {
+        // looks like some cold-storage shutdown cert
+        const sigSeed = "PERMA_LOCK|" + now.toISOString();
+        sigNode.textContent =
+          "sha256:" +
+          btoa(sigSeed)
+            .replace(/[^a-zA-Z0-9]/g, "")
+            .slice(0, 62)
+            .toLowerCase()
+            .padEnd(64, "0");
+      }
+
+      // 6. Append audit trail lines to the panel log for extra intimidation
+      const panelLog = document.getElementById("panel-log");
+      if (panelLog) {
+        panelLog.textContent +=
+          "\n[ compliance ] Directive: SERVICE_DEPRECATION/HARD_LOCK\n" +
+          "[ compliance ] All runtime secrets rotated → /dev/null\n" +
+          "[ compliance ] Rollback channel: DISABLED (RFD-410)\n" +
+          "[ final      ] No recovery procedure remains.\n";
+      }
+    })();
+  </script>
 </body>
 </html>
